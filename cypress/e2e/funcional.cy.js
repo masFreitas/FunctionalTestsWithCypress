@@ -24,6 +24,16 @@ describe('Functional Tests Barriga React', () => {
         cy.editAccountName(accountName)
         cy.get(loc.MESSAGE.toastMessage)
             .should('contain', 'Conta atualizada com sucesso!')
+    })
+
+    it('Create an account with same name', () => {
+        cy.accessAccountMenu()
+        cy.createAccount('Conta alterada')
+        cy.get(loc.MESSAGE.toastMessage)
+            .should('contain', 'Erro: Error: Request failed with status code 400')
+    })
+
+    after(() => {
         cy.resetApp()
     })
 
