@@ -49,6 +49,18 @@ describe('Functional Tests Barriga React', () => {
     it('Get balance with success', () => {
         cy.get(loc.MENU.home).click()
         cy.xpath(loc.SALDO.FNsaldoConta('Conta para saldo')).should('contain', '534,00')
+
+        cy.get(loc.MENU.extrato).click()
+        cy.xpath(loc.EXTRATO.editExtrato('Movimentacao 1, calculo saldo')).click()
+        cy.get(loc.MOVIMENTACAO.descricaoField).should('have.value', 'Movimentacao 1, calculo saldo')
+        cy.get(loc.MOVIMENTACAO.statusBtn).click()
+        cy.get(loc.MOVIMENTACAO.salvarBtn).click()
+        cy.get(loc.MESSAGE.toastMessage)
+            .should('contain', 'sucesso')
+        
+        cy.get(loc.MENU.home).click()
+        cy.xpath(loc.SALDO.FNsaldoConta('Conta para saldo')).should('contain', '4.034,00')
+
     })
 
     it('Remove transaction with success', () => {

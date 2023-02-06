@@ -36,6 +36,7 @@ const locators = {
     EXTRATO:{
         buscaElemento: (desc, value) => `//span[contains(., '${desc}')]//following-sibling::small[contains(., '${value}')]`,
         deleteExtrato: conta => `//span[contains(., '${conta}')]/../../..//i[@class='far fa-trash-alt']`,
+        editExtrato: conta => `//span[contains(., '${conta}')]/../../..//i[@class='fas fa-edit']`,
     },
 
     SALDO: {
