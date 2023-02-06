@@ -15,6 +15,7 @@ const locators = {
         contas: '[href="/contas"]',
         reset: '[href="/reset"]',
         movimentacao: '[data-test="menu-movimentacao"]',
+        extrato: '[data-test="menu-extrato"]'
     },
 
     CONTAS: {
@@ -33,7 +34,8 @@ const locators = {
     },
 
     EXTRATO:{
-        buscaElemento: (desc, value) => `//span[contains(., '${desc}')]//following-sibling::small[contains(., '${value}')]`
+        buscaElemento: (desc, value) => `//span[contains(., '${desc}')]//following-sibling::small[contains(., '${value}')]`,
+        deleteExtrato: conta => `//span[contains(., '${conta}')]/../../..//i[@class='far fa-trash-alt']`,
     },
 
     SALDO: {

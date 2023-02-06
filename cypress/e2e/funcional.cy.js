@@ -49,7 +49,14 @@ describe('Functional Tests Barriga React', () => {
     it('Get balance with success', () => {
         cy.get(loc.MENU.home).click()
         cy.xpath(loc.SALDO.FNsaldoConta('Conta alterada')).should('contain', '123,00')
-        
+    })
+
+    it('Remove transaction with success', () => {
+        cy.get(loc.MENU.extrato).click()
+        cy.xpath(loc.EXTRATO.deleteExtrato('Desc')).click()
+        cy.get(loc.MESSAGE.toastMessage)
+            .should('contain', 'Movimentação removida com sucesso!')
+
     })
 
     after(() => {
