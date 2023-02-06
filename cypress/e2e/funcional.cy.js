@@ -38,11 +38,18 @@ describe('Functional Tests Barriga React', () => {
         cy.get(loc.MOVIMENTACAO.descricaoField).type('Desc')
         cy.get(loc.MOVIMENTACAO.valorField).type('123')
         cy.get(loc.MOVIMENTACAO.interessadoField).type('Inter')
+        cy.get(loc.MOVIMENTACAO.conta).select('Conta alterada')
         cy.get(loc.MOVIMENTACAO.statusBtn).click()
         cy.get(loc.MOVIMENTACAO.salvarBtn).click()
         cy.get(loc.MESSAGE.toastMessage)
             .should('contain', 'Movimentação inserida com sucesso!')
-        cy.xpath(loc.EXTRATO.buscaElemento).should('exist')
+        cy.xpath(loc.EXTRATO.buscaElemento('Desc', '123')).should('exist')
+    })
+
+    it('Get balance with success', () => {
+        cy.get(loc.MENU.home).click()
+        cy.xpath(loc.SALDO.FNsaldoConta('Conta alterada')).should('contain', '123,00')
+        
     })
 
     after(() => {

@@ -10,6 +10,7 @@ const locators = {
     },
 
     MENU: {
+        home: '[data-test="menu-home"]',
         setting: '[data-test="menu-settings"]',
         contas: '[href="/contas"]',
         reset: '[href="/reset"]',
@@ -26,12 +27,17 @@ const locators = {
         descricaoField: '[data-test="descricao"]',
         valorField: '[data-test="valor"]',
         interessadoField: '[data-test="envolvido"]',
+        conta: '[data-test="conta"]',
         statusBtn: '[data-test="status"]',
         salvarBtn: '.btn-primary'
     },
 
     EXTRATO:{
-        buscaElemento: "//span[contains(., 'Desc')]//following-sibling::small[contains(., '123')]"
+        buscaElemento: (desc, value) => `//span[contains(., '${desc}')]//following-sibling::small[contains(., '${value}')]`
+    },
+
+    SALDO: {
+        FNsaldoConta: nome => `//td[contains(., '${nome}')]//following-sibling::td`
     }
 
 }
