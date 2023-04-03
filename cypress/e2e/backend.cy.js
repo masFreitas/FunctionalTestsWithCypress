@@ -11,6 +11,10 @@ describe('Functional Tests Barriga React', () => {
             })
     })
 
+    beforeEach(() => {
+        cy.resetRest(token)
+    })
+
     it('Create an account with success', () => {
         cy.request({
             headers: { Authorization: `JWT ${token}` },
@@ -46,17 +50,4 @@ describe('Functional Tests Barriga React', () => {
     it('Remove transaction with success', () => {
 
     })
-
-    after(() => {
-
-        cy.request({
-            headers: { Authorization: `JWT ${token}` },
-            method: 'GET',
-            url: 'https://barrigarest.wcaquino.me/reset',
-        }).as('response')
-    })
-    cy.get('@response').then(res => {
-        expect(res.status).to.be.equal(200)
-    })
-
 })
