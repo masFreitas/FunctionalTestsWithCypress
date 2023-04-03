@@ -19,7 +19,7 @@ describe('Functional Tests Barriga React', () => {
         cy.request({
             headers: { Authorization: `JWT ${token}` },
             method: 'POST',
-            url: 'https://barrigarest.wcaquino.me/contas',
+            url: '/contas',
             body: {
                 nome: "Conta via rest"
             }
