@@ -31,7 +31,28 @@ describe('Functional Tests Barriga React', () => {
         })
     })
 
-    it('Edit an account with success', () => {
+    it.only('Edit an account with success', () => {
+        cy.request({
+            headers: { Authorization: `JWT ${token}` },
+            method: 'GET',
+            url: '/contas',
+            qs: {
+                npme: 'Conta para alterar'
+            }
+        }).then(res => {
+            cy.request({
+                headers: { Authorization: `JWT ${token}` },
+                method: 'PUT',
+                url: `/contas/${res.body[0].id}`,
+                body: {
+                    nome: 'Conta alterada via rest'
+                }
+            }).as('response')
+            cy.get('@response').then(res => {
+                expect(res.status).to.be.equal(200)
+                expect(res.body).to.have.property('nome', 'Conta alterada via rest')
+            })
+        })
 
     })
 
